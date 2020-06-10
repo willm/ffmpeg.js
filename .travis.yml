@@ -1,1 +1,6 @@
 language: node_js
+services:
+  - docker
+before_install:
+  - docker build -t toolchain .
+  - docker run -t toolchain bash -c "source /root/emsdk/emsdk_env.sh && make && cp ffmpeg*.js /mnt"
